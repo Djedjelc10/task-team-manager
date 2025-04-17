@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>User Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              user: "#7C3AED",
+              background: "#F9FAFB",
+              card: "#FFFFFF",
+              text: "#1F2937",
+              accent: "#7C3AED",
+            },
+          },
+        },
+      };
+    </script>
+  </head>
+  <body class="bg-background text-text font-sans">
+    <div class="min-h-screen flex flex-col md:flex-row">
+      <!-- Sidebar -->
+      <aside class="md:w-64 w-full bg-user text-white p-6 space-y-8">
+        <div class="text-2xl font-bold">Bienvenue</div>
+        <nav class="space-y-3">
+          <a href="#" class="block py-2 px-3 rounded-lg hover:bg-accent transition">🏠 Tableau de bord</a>
+          <a href="#" class="block py-2 px-3 rounded-lg hover:bg-accent transition">📁 Mes projets</a>
+          <a href="#" class="block py-2 px-3 rounded-lg hover:bg-accent transition">📝 Mes tâches</a>
+          <a href="#" class="block py-2 px-3 rounded-lg hover:bg-accent transition">⚙️ Paramètres</a>
+        </nav>
+      </aside>
+
+      <!-- Main -->
+      <main class="flex-1 p-6 space-y-8">
+        <!-- Profil -->
+        <section class="bg-card p-6 rounded-xl shadow flex justify-between items-center">
+          <div>
+            <h1 class="text-2xl font-bold">Bonjour, Anne </h1>
+            <p class="text-sm text-gray-600">Membre depuis Janvier 2024</p>
+          </div>
+          <button id="edit-profile-btn" class="bg-user hover:bg-accent text-white py-2 px-4 rounded-lg shadow transition">
+            ✏️ Modifier mon profil
+          </button>
+        </section>
+
+        <!-- Formulaire de modification du profil -->
+        <section id="profile-form" class="hidden bg-card p-6 rounded-xl shadow">
+          <h2 class="text-xl font-semibold mb-4">Mettre à jour mes infos</h2>
+          <form class="grid gap-4">
+            <div>
+              <label class="block text-sm font-semibold">Nom</label>
+              <input type="text" class="w-full p-3 rounded-lg border bg-background" value="Anne-marie" />
+            </div>
+            <div>
+              <label class="block text-sm font-semibold">Email</label>
+              <input type="email" class="w-full p-3 rounded-lg border bg-background" value="anne@gmail.com" />
+            </div>
+            <div>
+              <label class="block text-sm font-semibold">Mot de passe</label>
+              <input type="password" class="w-full p-3 rounded-lg border bg-background" placeholder="Nouveau mot de passe" />
+            </div>
+            <button type="submit" class="bg-accent text-white py-2 px-4 rounded-lg hover:bg-user transition">💾 Enregistrer</button>
+          </form>
+        </section>
+
+        <!-- Tâches avec mise à jour de statut -->
+        <section>
+          <h2 class="text-xl font-semibold mb-4">📝 Mes tâches</h2>
+          <div class="space-y-4">
+            <!-- Tâche 1 -->
+            <div class="bg-white p-4 rounded-lg shadow flex flex-col md:flex-row md:items-center justify-between gap-4">
+              <div>
+                <p class="font-medium">Créer les maquettes UI</p>
+                <p class="text-sm text-gray-600">Priorité : Haute - Échéance : 18 Avril</p>
+              </div>
+              <form class="flex items-center gap-2">
+                <label for="status1" class="text-sm font-medium">Statut :</label>
+                <select id="status1" class="p-2 rounded-lg border text-sm bg-background">
+                  <option value="en_cours" selected>En cours</option>
+                  <option value="terminee">Terminée</option>
+                  <option value="bloquee">Bloquée</option>
+                </select>
+                <button type="submit" class="bg-accent text-white px-3 py-2 rounded-lg text-sm hover:bg-user transition">💾</button>
+              </form>
+            </div>
+
+            <!-- Tâche 2 -->
+            <div class="bg-white p-4 rounded-lg shadow flex flex-col md:flex-row md:items-center justify-between gap-4">
+              <div>
+                <p class="font-medium">Faire les tests unitaires</p>
+                <p class="text-sm text-gray-600">Priorité : Moyenne - Échéance : 20 Avril</p>
+              </div>
+              <form class="flex items-center gap-2">
+                <label for="status2" class="text-sm font-medium">Statut :</label>
+                <select id="status2" class="p-2 rounded-lg border text-sm bg-background">
+                  <option value="non_commencee">Non commencée</option>
+                  <option value="en_cours" selected>En cours</option>
+                  <option value="terminee">Terminée</option>
+                  <option value="bloquee">Bloquée</option>
+                </select>
+                <button type="submit" class="bg-accent text-white px-3 py-2 rounded-lg text-sm hover:bg-user transition">💾</button>
+              </form>
+            </div>
+          </div>
+        </section>
+
+        <!-- Projets -->
+        <section>
+          <h2 class="text-xl font-semibold mb-4">📁 Projets auxquels je participe</h2>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="bg-white p-5 rounded-xl shadow">
+              <h3 class="text-lg font-bold mb-2">🎨 Refonte site vitrine</h3>
+              <div class="h-2 bg-gray-200 rounded-full mb-2">
+                <div class="h-full bg-user rounded-full" style="width: 60%"></div>
+              </div>
+              <p class="text-sm">60% complété - Échéance : 25 Avril</p>
+            </div>
+            <div class="bg-white p-5 rounded-xl shadow">
+              <h3 class="text-lg font-bold mb-2">📲 App mobile</h3>
+              <div class="h-2 bg-gray-200 rounded-full mb-2">
+                <div class="h-full bg-accent rounded-full" style="width: 35%"></div>
+              </div>
+              <p class="text-sm">35% complété - Échéance : 2 Mai</p>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <!-- JS toggle -->
+    <script>
+      document.getElementById("edit-profile-btn").addEventListener("click", () => {
+        document.getElementById("profile-form").classList.toggle("hidden");
+      });
+    </script>
+  </body>
+</html>
